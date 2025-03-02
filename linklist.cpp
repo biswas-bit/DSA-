@@ -1,4 +1,4 @@
-#include<iostream>
+# include<iostream>
 using namespace std;
 
 struct Node{
@@ -11,7 +11,8 @@ struct Node{
     }
 };
 
-class linklist{
+class linklist
+{
     Node* head;
     public:
     linklist()
@@ -41,25 +42,59 @@ class linklist{
         }
         temp->next=newNode;
     }
+    void del(int value)
+    {
+        if(!head){
+            cout<<"empty list"<<endl;
+            return;
+        }
+        if(head->data==value)
+        {
+            Node* temp= head;
+            head=head->next;
+            delete temp;
+            return;
+        }
+        
+        Node*temp=head;
+        while(temp->next && temp->next->data!=value)
+        {
+            temp=temp->next;
+        }
+        if(!temp->next){
+            cout<<"this value doesnot exists"<<endl;
+            return;
+        }
+        
+        Node* todelete=temp->next;
+        temp->next=temp->next->next;
+        delete todelete;
+    }
     
     void display()
     {
-        Node* temp=head;
+        if(!head)
+        {
+            cout<<"this is empty list"<<endl;
+            return;
+        }
+        Node*temp=head;
         while(temp!=NULL)
         {
-            cout<<temp->data<<"----->";
+            cout<<temp->data<<"-->";
             temp=temp->next;
         }
-        cout<<"Null"<<endl;
+        cout<<"NULL"<<endl;
     }
 };
 int main()
 {
     linklist obj1;
-    obj1.at_first(1);
+    obj1.at_first(12);
     obj1.append(23);
     obj1.append(45);
-    obj1.append(54);
+    obj1.append(67);
+    obj1.del(45);
     obj1.display();
     return 0;
 }
