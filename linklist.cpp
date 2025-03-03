@@ -42,46 +42,78 @@ class linklist
         }
         temp->next=newNode;
     }
+    
     void del(int value)
     {
-        if(!head){
-            cout<<"empty list"<<endl;
+        if(!head)
+        {
+            cout<<"this is empty"<<endl;
             return;
         }
         if(head->data==value)
         {
-            Node* temp= head;
+            Node* temp=head;
             head=head->next;
             delete temp;
-            return;
+            return ;
         }
         
-        Node*temp=head;
+        Node* temp=head;
         while(temp->next && temp->next->data!=value)
         {
             temp=temp->next;
         }
-        if(!temp->next){
-            cout<<"this value doesnot exists"<<endl;
-            return;
-        }
         
+        if(!temp->next)
+        {
+            cout<<"value is not found in list"<<endl;
+            return ;
+        }
         Node* todelete=temp->next;
         temp->next=temp->next->next;
         delete todelete;
+    }
+    
+    void insert(int index, int data)
+    {
+        if(index<0)
+        {
+            cout<<"invallid index"<<endl;
+            return;
+        }
+        Node* newNode=new Node(data);
+        if(index==0)
+        {
+            newNode->next=newNode;
+            head=newNode;
+        }
+        Node* temp = head;
+        int currentindex=0;
+        while(temp->next && currentindex<index-1)
+        {
+            temp=temp->next;
+            currentindex++;
+        }
+        if(!temp)
+        {
+            cout<<"invallid index"<<endl;
+            return ;
+        }
+        newNode->next=temp->next;
+        temp->next=newNode;
     }
     
     void display()
     {
         if(!head)
         {
-            cout<<"this is empty list"<<endl;
+            cout<<"this is empty"<<endl;
             return;
         }
-        Node*temp=head;
+        Node* temp=head;
         while(temp!=NULL)
         {
-            cout<<temp->data<<"-->";
+            cout<<temp->data<<"--->";
             temp=temp->next;
         }
         cout<<"NULL"<<endl;
@@ -90,11 +122,12 @@ class linklist
 int main()
 {
     linklist obj1;
-    obj1.at_first(12);
-    obj1.append(23);
-    obj1.append(45);
-    obj1.append(67);
-    obj1.del(45);
+    obj1.at_first(1);
+    obj1.append(2);
+    obj1.append(3);
+    obj1.append(4);
+    obj1.del(4);
+    obj1.insert(1,4);
     obj1.display();
     return 0;
 }
