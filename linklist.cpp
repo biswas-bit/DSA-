@@ -73,7 +73,8 @@ class linklist
         temp->next=temp->next->next;
         delete todelete;
     }
-    
+
+
     void insert(int index, int data)
     {
         if(index<0)
@@ -102,6 +103,36 @@ class linklist
         newNode->next=temp->next;
         temp->next=newNode;
     }
+
+void deleteByIndex(int index)
+{
+    if(!head)
+    {
+        cout<<"this linklist is empty"<<endl;
+        return;
+    }
+    if(index<0)
+    {
+        cout<<" this is invallid index"<<endl;
+        return 0;
+    }
+    Node* temp=head;
+    Node* prev=nullptr;
+    int count=0;
+    while(temp && count<index)
+        {
+            prev=temp;
+            temp=temp->next;
+            count ++;
+        }
+    if(!temp)
+    {
+        cout<<"Index out of range"<<endl;
+        return;
+    }
+    prev->next=temp->next;
+    delete temp;
+}
     
     void display()
     {
