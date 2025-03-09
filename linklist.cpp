@@ -133,7 +133,30 @@ void deleteByIndex(int index)
     prev->next=temp->next;
     delete temp;
 }
-    
+
+void sum_info()
+{
+    int sum=0;
+    Node* temp=head;
+    while(temp!=NULL)
+        {
+            sum+=temp->data;
+            temp=temp->next
+        }
+    return sum;
+}
+
+void count_nodes()
+{
+    int count=0;
+    Node* temp=head;
+    while(temp!=NULL)
+        {
+            count++;
+            temp=temp->next;
+        }
+    return count;
+}
     void display()
     {
         if(!head)
