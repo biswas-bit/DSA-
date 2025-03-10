@@ -32,7 +32,23 @@ class Dlinklist
       }
       head=newNode;
     }
-    
+
+void append(int data)
+{
+    Node* newNode=new Node(data);
+    if(!head)
+    {
+        head=newNode;
+        return;
+    }
+    Node*temp=head;
+    while(temp->next)
+        {
+            temp=temp->next;
+        }
+    temp->next=newNode;
+    newNode->prev=temp;     //update prevoius Node
+}
     void display()
     {
         Node* temp=head;
