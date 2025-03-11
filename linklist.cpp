@@ -42,7 +42,21 @@ class linklist
         }
         temp->next=newNode;
     }
-    
+
+void reverse()
+{
+    Node* prev=nullptr;
+    Node* current=nullptr;
+    Node* nextptr=nullptr;
+    while(current)
+        {
+            nextptr=current->next;
+            current->next=prev;
+            prev=current;
+            current=next;
+        }
+    head=prev;
+}
     void del(int value)
     {
         if(!head)
