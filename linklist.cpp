@@ -53,7 +53,7 @@ void reverse()
             nextptr=current->next;
             current->next=prev;
             prev=current;
-            current=next;
+            current=nextptr;
         }
     head=prev;
 }
