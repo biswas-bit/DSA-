@@ -24,9 +24,25 @@ void subarray(vector<int>& vec)
       cout<<endl;
     }
 }
+// broot force approch to calculate maximum sub array sum 
+int subarraymaxsum(vectro<int>& vec)
+{
+  int maxSum=0;
+  for(int i=0;i<vec.size();i++)
+    {
+      int currentSum=0;
+      for(int j=i;j<vec.size(); j++)
+        {
+          currentSum+=vec[j];
+          maxSum=max(currentSum, maxSum);
+        }
+    }
+  return maxSum;
+}
 int main()
 {
   vector<int>arr={1,2,3,4,5};
   subarray(arr);
+  cout<<suarraymaxsum(arr)<<endl;
   return 0;
 }
