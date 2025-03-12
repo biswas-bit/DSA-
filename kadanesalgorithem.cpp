@@ -3,7 +3,7 @@
 using namespace std;
 void  maxsumarray(vector<int> vec)
 {
-  int maxSum=0;
+  int maxSum=INT_MIN;
   int currentSum=0;
   for(int i=0; i<vec.size(); i++)
     {
