@@ -19,3 +19,24 @@ int maxArea(vector<int>height)
   return maxWater;  
 }
 
+int optimized(vector<int>& vec)
+{
+  int lp=0;
+  int rp=vec.size()-1;
+  int maxWater=0;
+  while(lp<rp)
+    {
+      int wd=rp-lp;
+      int ht=min(vec[lp],vec[rp]);
+      int area=wd*ht;
+      maxWater=max(maxWater,area);
+      if(vec[lp]<vec[rp])
+      {
+        lp++;
+      }
+      else{
+        rp--;
+      }
+    }
+    return maxWater;
+}
