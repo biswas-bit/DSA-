@@ -21,6 +21,36 @@ vector<int> productExceptItself(vector<int>& nums)
   return ansArray;
 }
 
+//optimizing time complex
+vector<int>exceptSelf(vector<int>arr)   // O(n) 
+{
+    int n=arr.size();
+    vector<int>prefix(n,1);
+    vector<int>sufix(n,1);
+    vector<int>ans(n,1);
+    //prefix
+    for(int i=1;i<n;i++)
+    {
+        prefix[i]=prefix[i-1]*arr[i-1];
+    }
+    
+    //sufix
+    for(int i=n-2;i>=0;i--)
+    {
+        sufix[i]=sufix[i+1]*arr[i+1];
+    }
+    
+    //calculate
+    for(int i=0;i<n;i++)
+    {
+        ans[i]=prefix[i]*sufix[i];
+    }
+    return ans;
+}
+
+//optimizing space also
+
+
 int main()
 {
   vector<int>nums={1,2,3,4,5};
