@@ -9,7 +9,7 @@ int binarySearch(vector<int>arr,int target)
    int end=arr.size()-1;
    while(start<=end)
    {
-       int mid=(start+end)/2;
+       int mid=strat+(end-start)/2;   // optimized (in worse case mid=(start+end)/2  if there are INT_MAX index it can be overt flow)
        if(arr[mid]>target)
        {
            end=mid-1;
