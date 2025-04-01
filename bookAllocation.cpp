@@ -50,7 +50,7 @@ int allocateBooks(vector<int> &arr, int n, int m)
     int ans = -1;
     int start = maxPages, end = sum;  // Start from max(arr) instead of 0
 
-    while (start <= end) 
+    while (start <= end)                       // main logic
     {
         int mid = start + (end - start) / 2;
         
