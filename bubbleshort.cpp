@@ -21,9 +21,27 @@ void bubbleSort(vector<int>arr)                 // time cop of this algorithem i
       }
     }
 }
+
+void selectionSort(vector<int>arr)
+{
+ for(int i=0;i<arr.size()-1;i++)
+  {
+   int startingIdx=i;
+   for(int j=i+1;j<arr.size(); j++)
+    {
+     if(arr[j]<arr[startingIdx])
+     {
+       startingIdx=j;
+     }
+    }
+   swap(arr[i],arr[startingIdx]);
+  }
+}
+
 int main()
 {
   vector<int>arr={4,1,5,2,3};
+  selectionSort(arr);
   bubbleSort(arr);
   for(int value : arr)
     {
