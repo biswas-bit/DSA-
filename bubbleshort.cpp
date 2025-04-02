@@ -38,6 +38,21 @@ void selectionSort(vector<int>arr)
   }
 }
 
+void insertSort(vector<int>arr)
+{
+ for(inn i=1;i<arr.size();i++)
+  {
+   int current=arr[i];
+   int prev=i-1;
+   while(prev>=0 && arr[prev]>current)
+    {
+     arr[prev+1]=arr[prev];
+     prev--;
+    }
+   arr[prev+1]=curr;
+  }
+}
+
 int main()
 {
   vector<int>arr={4,1,5,2,3};
