@@ -40,7 +40,7 @@ void selectionSort(vector<int>arr)
 
 void insertSort(vector<int>arr)
 {
- for(inn i=1;i<arr.size();i++)
+ for(int i=1;i<arr.size();i++)
   {
    int current=arr[i];
    int prev=i-1;
