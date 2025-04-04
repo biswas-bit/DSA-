@@ -1,201 +1,135 @@
 # include<iostream>
 using namespace std;
 
-struct Node{
+// create Node
+class Node{
+    public:
     int data;
     Node* next;
-    Node(int value)
-    {
+    Node(int value){
         data=value;
-        next=nullptr;
+        next=NULL;
     }
 };
 
-class linklist
-{
+// list
+class list{
     Node* head;
+    Node* tail;
     public:
-    linklist()
-    {
-        head=nullptr;
+    list(){
+        head=NULL;
+        tail=NULL;
     }
-    
-    void at_first(int data)
-    {
-        Node* newNode=new Node(data);
-        newNode->next=head;
-        head=newNode;
-    }
-    
-    void append(int data)
+    //at first
+    void push_first(int data)
     {
         Node* newNode=new Node(data);
         if(!head)
         {
-            head=newNode;
+            head=tail=newNode;
             return;
         }
-        Node* temp=head;
-        while(temp->next)
-        {
-            temp=temp->next;
+        else{
+            newNode->next=head;
+            head=newNode;
         }
-        temp->next=newNode;
     }
-
-void reverse()
-{
-    Node* prev=nullptr;
-    Node* current=nullptr;
-    Node* nextptr=nullptr;
-    while(current)
+    // at last
+    void push_back(int data){
+        Node* newNode=new Node(data);
+         if(!head)
         {
-            nextptr=current->next;
-            current->next=prev;
-            prev=current;
-            current=nextptr;
+            head=tail=newNode;
+            return;
         }
-    head=prev;
-}
-    void del(int value)
+        else{
+            tail->next=newNode;
+            tail=newNode;
+        }
+    }
+    // delete first element
+    void pop_front()
     {
         if(!head)
         {
-            cout<<"this is empty"<<endl;
+            cout<<"this list is empty"<<endl;
             return;
         }
-        if(head->data==value)
+        Node* temp=head;
+        head=head->next;
+        temp->next=NULL;
+        delete temp;
+    }
+    //delete last element
+    void pop_back()
+    {
+        if(!head)
         {
-            Node* temp=head;
-            head=head->next;
-            delete temp;
+            cout<<"this list is empty"<<endl;
             return ;
+        }
+        Node* temp=head;
+        while(temp->next!=tail)
+        {
+            temp=temp->next;
+        }
+      delete tail;
+      tail=temp;
+      tail->next=NULL;
+    }
+ // insert
+    void insert(int value, int pos)
+    {
+        Node* newNode=new Node(value);
+        if(pos<0)
+        {
+            cout<<"invallid position"<<endl;
+            return;
+        }
+        
+        if(pos==0)
+        {
+            push_first(value);
         }
         
         Node* temp=head;
-        while(temp->next && temp->next->data!=value)
+        for(int i=0;i<pos-1;i++)
         {
             temp=temp->next;
-        }
-        
-        if(!temp->next)
-        {
-            cout<<"value is not found in list"<<endl;
-            return ;
-        }
-        Node* todelete=temp->next;
-        temp->next=temp->next->next;
-        delete todelete;
-    }
-
-
-    void insert(int index, int data)
-    {
-        if(index<0)
-        {
-            cout<<"invallid index"<<endl;
-            return;
-        }
-        Node* newNode=new Node(data);
-        if(index==0)
-        {
-            newNode->next=newNode;
-            head=newNode;
-        }
-        Node* temp = head;
-        int currentindex=0;
-        while(temp->next && currentindex<index-1)
-        {
-            temp=temp->next;
-            currentindex++;
-        }
-        if(!temp)
-        {
-            cout<<"invallid index"<<endl;
-            return ;
         }
         newNode->next=temp->next;
         temp->next=newNode;
     }
-
-void deleteByIndex(int index)
-{
-    if(!head)
-    {
-        cout<<"this linklist is empty"<<endl;
-        return;
-    }
-    if(index<0)
-    {
-        cout<<" this is invallid index"<<endl;
-        return 0;
-    }
-    Node* temp=head;
-    Node* prev=nullptr;
-    int count=0;
-    while(temp && count<index)
-        {
-            prev=temp;
-            temp=temp->next;
-            count ++;
-        }
-    if(!temp)
-    {
-        cout<<"Index out of range"<<endl;
-        return;
-    }
-    prev->next=temp->next;
-    delete temp;
-}
-
-void sum_info()
-{
-    int sum=0;
-    Node* temp=head;
-    while(temp!=NULL)
-        {
-            sum+=temp->data;
-            temp=temp->next
-        }
-    return sum;
-}
-
-void count_nodes()
-{
-    int count=0;
-    Node* temp=head;
-    while(temp!=NULL)
-        {
-            count++;
-            temp=temp->next;
-        }
-    return count;
-}
-    void display()
-    {
+    
+    void print(){
         if(!head)
         {
-            cout<<"this is empty"<<endl;
+            cout<<"list is empty"<<endl;
             return;
         }
         Node* temp=head;
         while(temp!=NULL)
         {
-            cout<<temp->data<<"--->";
+            cout<<temp->data<<"-->";
             temp=temp->next;
         }
-        cout<<"NULL"<<endl;
+        cout<<"NUll"<<endl;
     }
 };
 int main()
 {
-    linklist obj1;
-    obj1.at_first(1);
-    obj1.append(2);
-    obj1.append(3);
-    obj1.append(4);
-    obj1.del(4);
-    obj1.insert(1,4);
-    obj1.display();
+    list ll;
+    ll.push_first(1);
+    ll.push_first(2);
+    ll.push_back(3);
+    ll.push_back(4);
+    ll.print();
+    ll.pop_front();
+    ll.print();
+    ll.pop_back();
+    ll.print();
+    ll.insert(2,1);
+    ll.print();
     return 0;
 }
