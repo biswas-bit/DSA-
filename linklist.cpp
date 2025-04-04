@@ -96,6 +96,11 @@ class list{
         Node* temp=head;
         for(int i=0;i<pos-1;i++)
         {
+            if(temp==NULL)
+            {
+                cout<<"invalid pos\n";
+                return;
+            }
             temp=temp->next;
         }
         newNode->next=temp->next;
