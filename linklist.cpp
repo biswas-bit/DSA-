@@ -106,6 +106,22 @@ class list{
         newNode->next=temp->next;
         temp->next=newNode;
     }
+// search
+int search(int key)
+{
+    Node* temp=head;
+    int idx=0;
+    while(temp!=NULL)
+        {
+            if(temp->data==key)
+            {
+                return idx;
+            }
+            temp=temp->next;
+            idx++;
+        }
+    return -1;
+}
     
     void print(){
         if(!head)
